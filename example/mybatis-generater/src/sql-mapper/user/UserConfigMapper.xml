@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.force.dal.dao.mysql.user.UserConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.force.dal.dto.mysql.user.UserConfig" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="User_Id" property="userId" jdbcType="VARCHAR" />
+    <result column="Table_Rows" property="tableRows" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, User_Id, Table_Rows
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from USER_CONFIG
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from USER_CONFIG
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.force.dal.dto.mysql.user.UserConfig" >
+    insert into USER_CONFIG (ID, User_Id, Table_Rows
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{tableRows,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.force.dal.dto.mysql.user.UserConfig" >
+    insert into USER_CONFIG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        User_Id,
+      </if>
+      <if test="tableRows != null" >
+        Table_Rows,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="tableRows != null" >
+        #{tableRows,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.force.dal.dto.mysql.user.UserConfig" >
+    update USER_CONFIG
+    <set >
+      <if test="userId != null" >
+        User_Id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="tableRows != null" >
+        Table_Rows = #{tableRows,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.force.dal.dto.mysql.user.UserConfig" >
+    update USER_CONFIG
+    set User_Id = #{userId,jdbcType=VARCHAR},
+      Table_Rows = #{tableRows,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

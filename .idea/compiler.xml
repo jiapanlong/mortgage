@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mortgage-biz" />
+        <module name="mortgage-daemon" />
+        <module name="mortgage-dal" />
+        <module name="mortgage-meta" />
+        <module name="mortgage-service" />
+        <module name="mortgage-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mortgage" target="1.8" />
+      <module name="mortgage-biz" target="1.8" />
+      <module name="mortgage-daemon" target="1.8" />
+      <module name="mortgage-dal" target="1.8" />
+      <module name="mortgage-facade" target="1.8" />
+      <module name="mortgage-facade-api" target="1.8" />
+      <module name="mortgage-integration" target="1.8" />
+      <module name="mortgage-meta" target="1.8" />
+      <module name="mortgage-service" target="1.8" />
+      <module name="mortgage-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

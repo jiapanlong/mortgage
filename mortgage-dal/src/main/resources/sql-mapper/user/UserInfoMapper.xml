@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.force.dal.dao.mysql.user.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.force.dal.dto.mysql.user.UserInfo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="Username" property="username" jdbcType="VARCHAR" />
+    <result column="Password" property="password" jdbcType="VARCHAR" />
+    <result column="Last_Login_Ip" property="lastLoginIp" jdbcType="VARCHAR" />
+    <result column="Last_Login_Time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="Creator_Id" property="creatorId" jdbcType="VARCHAR" />
+    <result column="Created_Time" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, Username, Password, Last_Login_Ip, Last_Login_Time, Creator_Id, Created_Time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from USER_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from USER_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.force.dal.dto.mysql.user.UserInfo" >
+    insert into USER_INFO (ID, Username, Password, 
+      Last_Login_Ip, Last_Login_Time, Creator_Id, 
+      Created_Time)
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{lastLoginIp,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.force.dal.dto.mysql.user.UserInfo" >
+    insert into USER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="username != null" >
+        Username,
+      </if>
+      <if test="password != null" >
+        Password,
+      </if>
+      <if test="lastLoginIp != null" >
+        Last_Login_Ip,
+      </if>
+      <if test="lastLoginTime != null" >
+        Last_Login_Time,
+      </if>
+      <if test="creatorId != null" >
+        Creator_Id,
+      </if>
+      <if test="createdTime != null" >
+        Created_Time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginIp != null" >
+        #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.force.dal.dto.mysql.user.UserInfo" >
+    update USER_INFO
+    <set >
+      <if test="username != null" >
+        Username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        Password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginIp != null" >
+        Last_Login_Ip = #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        Last_Login_Time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        Creator_Id = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        Created_Time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.force.dal.dto.mysql.user.UserInfo" >
+    update USER_INFO
+    set Username = #{username,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      Last_Login_Ip = #{lastLoginIp,jdbcType=VARCHAR},
+      Last_Login_Time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      Creator_Id = #{creatorId,jdbcType=VARCHAR},
+      Created_Time = #{createdTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from USER_INFO
+    where Username = #{username,jdbcType=VARCHAR}
+  </select>
+</mapper>

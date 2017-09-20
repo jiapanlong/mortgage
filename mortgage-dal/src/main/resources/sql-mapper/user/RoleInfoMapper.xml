@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.force.dal.dao.mysql.user.RoleInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.force.dal.dto.mysql.user.RoleInfo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="Role_Name" property="roleName" jdbcType="VARCHAR" />
+    <result column="Created_Time" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, Role_Name, Created_Time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ROLE_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ROLE_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.force.dal.dto.mysql.user.RoleInfo" >
+    insert into ROLE_INFO (ID, Role_Name, Created_Time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.force.dal.dto.mysql.user.RoleInfo" >
+    insert into ROLE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="roleName != null" >
+        Role_Name,
+      </if>
+      <if test="createdTime != null" >
+        Created_Time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.force.dal.dto.mysql.user.RoleInfo" >
+    update ROLE_INFO
+    <set >
+      <if test="roleName != null" >
+        Role_Name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        Created_Time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.force.dal.dto.mysql.user.RoleInfo" >
+    update ROLE_INFO
+    set Role_Name = #{roleName,jdbcType=VARCHAR},
+      Created_Time = #{createdTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

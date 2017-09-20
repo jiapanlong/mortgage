@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.force.dal.dao.mysql.user.UserActionLogMapper" >
+  <resultMap id="BaseResultMap" type="com.force.dal.dto.mysql.user.UserActionLog" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="User_Id" property="userId" jdbcType="VARCHAR" />
+    <result column="Title" property="title" jdbcType="VARCHAR" />
+    <result column="Key" property="key" jdbcType="VARCHAR" />
+    <result column="Created_Time" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.force.dal.dto.mysql.user.UserActionLog" extends="BaseResultMap" >
+    <result column="Details" property="details" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, User_Id, Title, Key, Created_Time
+  </sql>
+  <sql id="Blob_Column_List" >
+    Details
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from USER_ACTION_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from USER_ACTION_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.force.dal.dto.mysql.user.UserActionLog" >
+    insert into USER_ACTION_LOG (ID, User_Id, Title, 
+      Key, Created_Time, Details
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{key,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{details,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.force.dal.dto.mysql.user.UserActionLog" >
+    insert into USER_ACTION_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        User_Id,
+      </if>
+      <if test="title != null" >
+        Title,
+      </if>
+      <if test="key != null" >
+        Key,
+      </if>
+      <if test="createdTime != null" >
+        Created_Time,
+      </if>
+      <if test="details != null" >
+        Details,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null" >
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="details != null" >
+        #{details,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.force.dal.dto.mysql.user.UserActionLog" >
+    update USER_ACTION_LOG
+    <set >
+      <if test="userId != null" >
+        User_Id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        Title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null" >
+        Key = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        Created_Time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="details != null" >
+        Details = #{details,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.force.dal.dto.mysql.user.UserActionLog" >
+    update USER_ACTION_LOG
+    set User_Id = #{userId,jdbcType=VARCHAR},
+      Title = #{title,jdbcType=VARCHAR},
+      Key = #{key,jdbcType=VARCHAR},
+      Created_Time = #{createdTime,jdbcType=TIMESTAMP},
+      Details = #{details,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.force.dal.dto.mysql.user.UserActionLog" >
+    update USER_ACTION_LOG
+    set User_Id = #{userId,jdbcType=VARCHAR},
+      Title = #{title,jdbcType=VARCHAR},
+      Key = #{key,jdbcType=VARCHAR},
+      Created_Time = #{createdTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
